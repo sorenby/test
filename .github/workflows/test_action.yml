@@ -15,8 +15,8 @@ jobs:
           CHAOS: ${{ secrets.CHAOS }}
           SUTEKH: ${{ secrets.SUTEKH }}
         run: |
-          curl "$GET_CMD"| jq . > cmd.json
-          echo "::set-output name=matrix::${{ fromJson(cmd.json) }}"
+          curl "$GET_CMD"| jq . > ${{ toJson(cmd) }}"
+          echo "::set-output name=matrix::${{ fromJson(cmd) }}"
           echo "${{ fromJson(cmd.json) }}"
 
 #  core:
