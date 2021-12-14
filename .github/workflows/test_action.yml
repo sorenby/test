@@ -26,11 +26,11 @@ jobs:
       - name: Check command
         id: check_cmd
         run: |
-          echo "${{ cmd }}"
-          echo "${{ url }}"
-          echo "${{ clan_list }}"
+          echo ${{ cl_cmd }}
+          echo ${{ cl_url }}
+          echo ${{ cl_clan_list }}
         env:
-          cmd: ${{ steps.get_cmd.outputs.clan_cmd }}
-          url: ${{ steps.get_cmd.outputs.clan_url }}
-          clan_list: ${{ steps.get_cmd.outputs.clan_list }}
+          cl_cmd: ${{ steps.get_cmd.outputs.clan_cmd }}
+          cl_url: ${{ steps.get_cmd.outputs.clan_url }}
+          cl_clan_list: ${{ steps.get_cmd.outputs.clan_list }}
         
