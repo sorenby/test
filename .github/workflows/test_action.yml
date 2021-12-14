@@ -21,6 +21,8 @@ jobs:
           GET_CURRENT: format($FETCH, $GET_CLAN, $CHAOS)
         run: |
           echo $GET_CURRENT
+          echo {{ $(GET_CURRENT: format($FETCH, $GET_CLAN, $CHAOS)) }}
+          echo $GET_CURRENT
       - uses: actions/upload-artifact@v2
         with:
           name: chaos
