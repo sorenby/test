@@ -40,10 +40,9 @@ jobs:
           BASE: ${{ secrets.ts_base }}
           CHAOS: ${{ secrets.chaos }}
           SUTEKH: ${{ secrets.sutekh }}
+          URL: $BASE+'/clans/'+$CHAOS+'/Players'/
         run: |-
-          with:
-            URL: $BASE+'/clans/'+$CHAOS+'/Players'/
-            echo $URL
+          echo $URL
           curl "https://abaddon.se/player.json" | jq . > clans.json
           tail clans.json
       - uses: actions/upload-artifact@v2
