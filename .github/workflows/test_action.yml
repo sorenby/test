@@ -18,6 +18,8 @@ jobs:
       - name: Get command
         id: get_cmd
         run: |
-          echo $(jk '.' | "$json_var")
+          echo $json_var
+          echo $json_var[0]
+          echo $json_var[0]['clan_url']
         env:
           json_var: ${{ steps.get_json.outputs.json_var}}
