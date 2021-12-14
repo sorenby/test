@@ -16,7 +16,7 @@ jobs:
           SUTEKH: ${{ secrets.SUTEKH }}
         run: |
           test=$(curl "$GET_CMD")
-          cmd=$(test.clan_cmd)
+          cmd=$test.clan_cmd
           echo "Out: $test"
           echo "cmd: $cmd"
         # SERVICES='${{ toJSON(github.event.client_payload.services) }}'
