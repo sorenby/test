@@ -20,8 +20,12 @@ jobs:
           $FETCH
           EOF
           )
-          echo $GET_CURRENT
-      # - name: Get it done
+          echo "::set-output name=content::$GET_CURRENT"
+        id: get_current
+        
+      - name: Get it done
+        run: |
+          echo "The string is: ${{ steps.get_current.outputs.content }}"
         # env:
           # GET_CURRENT: ${{ format({{ $FETCH }}, {{ $GET_CLAN }}, {{ $CHAOS }}) }}
         # run: |
