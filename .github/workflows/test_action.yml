@@ -14,7 +14,7 @@ jobs:
           GET_CLAN: ${{ secrets.GET_CLAN }}
           CHAOS: ${{ secrets.CHAOS }}
           SUTEKH: ${{ secrets.SUTEKH }}
-          TEST: $(curl "$GET_CMD")
+          TEST: ${{ $(curl '$GET_CMD') }}
         run: |
           # cmd=$test[0]
           echo 'Out: ${{ env.test[0].clan_cmd }}'
