@@ -43,7 +43,7 @@ jobs:
         run: |
       - name: Getting stuff
         env:
-          URL: ${{ BASE }}clans/${{ CHAOS }}/players
+          URL: '${{ env.BASE }}clans/${{ env.CHAOS }}/players'
         run: |-
           echo $URL
           curl "{ $env.URL }"| jq . > clans.json
