@@ -14,10 +14,10 @@ jobs:
           GET_CMD: ${{ secrets.BASE_CMD }}
         id: get_json
         run: |
-          echo ::set-output name=json_var::$(curl "$GET_CMD" | jq '.')
+          echo ::set-output name=json_var::$(curl "$GET_CMD")
       - name: Get command
         id: get_cmd
         run: |
-          echo $json_var
+          echo $json_var | jk '.'
         env:
           json_var: ${{ steps.get_json.outputs.json_var}}
