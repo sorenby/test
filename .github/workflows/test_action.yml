@@ -17,7 +17,7 @@ jobs:
         run: |
           test=$(curl "$GET_CMD")
           # cmd=$test[0]
-          echo "Out: {{ env.test[0].clan_cmd }}"
+          echo "Out: {{ test[0].clan_cmd }}"
         # echo "cmd: $cmd"
         # SERVICES='${{ toJSON(github.event.client_payload.services) }}'
         #  curl "$GET_CMD"| jq . > ${{ toJson(cmd) }}"
