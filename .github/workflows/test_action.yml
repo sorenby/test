@@ -20,7 +20,7 @@ jobs:
         run: |
           echo ::set-output name=clan_cmd::${{fromJson(steps.get_json.outputs.json_var).clan_cmd}}
           echo ::set-output name=clan_url::${{fromJson(steps.get_json.outputs.json_var).clan_url}}
-          echo ::set-output name=clan_list::${{fromJson(steps.get_json.outputs.json_var).clans}}
+          echo ::set-output name=clan_list::${{fromJson(steps.get_json.outputs.json_var).clans[0]}}
         env:
           json_var: ${{ steps.get_json.outputs.json_var }}
       - name: Check command
@@ -28,7 +28,7 @@ jobs:
         run: |
           echo ${{ steps.get_cmd.outputs.clan_cmd }}
           echo ${{ steps.get_cmd.outputs.clan_url }}
-          echo ${{ steps.get_cmd.outputs.clan_list[0] }}
+          echo ${{ steps.get_cmd.outputs.clan_list }}
         env:
           cl_cmd: ${{ steps.get_cmd.outputs.clan_cmd }}
           cl_url: ${{ steps.get_cmd.outputs.clan_url }}
