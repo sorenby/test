@@ -41,11 +41,9 @@ jobs:
           CHAOS: 8504f00eb77009be553c873604dc153c
           SUTEKH: ${{ secrets.sutekh }}
         run: |
-          echo "::set-env name=$BASE::$BASE"
-          echo "::set-env name=$CHAOS::$CHAOS"
+           echo "URL=$(echo $BASE | echo clans/ | echo $CHAOS | echo /players)" >> $GITHUB_ENV
+           echo $URL
       - name: Getting stuff
-        env:
-          URL: '${{ env.BASE }}clans/${{ env.CHAOS }}/players'
         run: |-
           echo $URL
           curl "{ $env.URL }"| jq . > clans.json
