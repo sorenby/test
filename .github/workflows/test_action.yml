@@ -18,7 +18,7 @@ jobs:
           # curl "$GET_CLAN$CHAOS"| jq . > chaos.json
       - name: Get it done
         env:
-          GET_CURRENT: ${{ format($FETCH, $GET_CLAN, $CHAOS) }}
+          GET_CURRENT: ${{ format({{ $FETCH }}, {{ $GET_CLAN }}, {{ $CHAOS }}) }}
         run: |
           echo $GET_CURRENT
           # echo GET_CURRENT format($FETCH,$GET_CLAN,$CHAOS)
