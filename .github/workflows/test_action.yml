@@ -28,7 +28,7 @@ jobs:
         run: |
           echo ${{ steps.get_cmd.outputs.clan_cmd }}
           echo ${{ steps.get_cmd.outputs.clan_url }}
-          echo ${{ steps.get_cmd.outputs.clan_list }}
+          echo ${{ steps.get_cmd.outputs.clan_list[0] }}
         env:
           cl_cmd: ${{ steps.get_cmd.outputs.clan_cmd }}
           cl_url: ${{ steps.get_cmd.outputs.clan_url }}
