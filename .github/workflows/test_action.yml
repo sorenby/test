@@ -39,3 +39,7 @@ jobs:
         run: |-
           curl "https://abaddon.se/player.json" | jq . > output_file.json
           tail output_file.json
+          - uses: actions/upload-artifact@v2
+          with:
+            name: my-artifact
+            path: output_file.json
