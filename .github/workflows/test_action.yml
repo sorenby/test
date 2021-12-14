@@ -18,14 +18,19 @@ jobs:
       - name: Get command
         id: get_cmd
         run: |
-          echo $json_var
-          echo "${{fromJson(steps.get_json.outputs.json_var).clan_url}}"
+          echo ::set-output name=clan_cmd::${{fromJson(steps.get_json.outputs.json_var).clan_cmd}}
+          echo ::set-output name=clan_url::${{fromJson(steps.get_json.outputs.json_var).clan_url}}
+          echo ::set-output name=clan_list::${{fromJson(steps.get_json.outputs.json_var).clan}}
         env:
-          json_var: ${{ steps.get_json.outputs.json_var}}
+          json_var: ${{ steps.get_json.outputs.json_var }}
       - name: Check command
         id: check_cmd
         run: |
-          echo $cmd_var
+          echo "${{ cmd }}"
+          echo "${{ url }}"
+          echo "${{ clan_list }}"
         env:
-          cmd_var: ${{ steps.get_cmd.outputs.json_var}}
+          cmd: ${{ steps.get_cmd.outputs.clan_cmd }}
+          url: ${{ steps.get_cmd.outputs.clan_url }}
+          clan_list: ${{ steps.get_cmd.outputs.clan_list }}
         
