@@ -17,16 +17,17 @@ jobs:
         run: |
           curl "$GET_CMD"| jq . > cmd.json
           echo "::set-output name=matrix::${{ fromJson(cmd.json) }}"
+          echo "${{ fromJson(cmd.json) }}"
 
-  core:
-    needs: build_cmd
-    runs-on: ubuntu-latest
-      strategy:
-        matrix: ${{ fromJson(needs.build_cmd.outputs.matrix) }}
-      steps:
-        - name: Get it done
-          run: |
-            echo "players: ${{ matrix.players }}"
+#  core:
+#    needs: build_cmd
+#    runs-on: ubuntu-latest
+#      strategy:
+#        matrix: ${{ fromJson(needs.build_cmd.outputs.matrix) }}
+#      steps:
+#        - name: Get it done
+#          run: |
+#            echo "players: ${{ matrix.players }}"
       #- name: Get it done
       #  run: |
       #    echo "The string is: ${{ steps.get_current.outputs.content }}"
