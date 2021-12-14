@@ -40,10 +40,10 @@ jobs:
           BASE: https://api.tactistats.com/api/
           CHAOS: 8504f00eb77009be553c873604dc153c
           SUTEKH: ${{ secrets.sutekh }}
-          URL: "$BASE/clans/$CHAOS/players"
+          URL: '${{ env.TS_BASE }}clans//${{ env.CHAOS }}//players'
         run: |-
           echo $URL
-          curl "{ $URL }"| jq . > clans.json
+          curl "{ $env.URL }"| jq . > clans.json
           tail clans.json
       - uses: actions/upload-artifact@v2
         with:
