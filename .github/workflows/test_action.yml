@@ -15,7 +15,7 @@ jobs:
           CHAOS: ${{ secrets.CHAOS }}
           SUTEKH: ${{ secrets.SUTEKH }}
         run: |
-          test=${{ toJson((curl "$GET_CMD"))}}
+          test=${{ toJson( ${{ curl "$GET_CMD" }} )}}
           cmd="${{ env.test.clan_cmd }}"
           echo "Out: $test"
           echo "cmd: $cmd"
