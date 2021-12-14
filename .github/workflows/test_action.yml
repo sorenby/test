@@ -37,12 +37,12 @@ jobs:
       # Test curl
       - name: Getting stuff
         env:
-          BASE: https://api.tactistats.com/api/
+          BASE: https://api.tactistats.com/api
           CHAOS: 8504f00eb77009be553c873604dc153c
           SUTEKH: ${{ secrets.sutekh }}
         run: |
-           echo "$BASE/clans/$CHAOS/players)" >> $GITHUB_ENV
-           echo $env.URL
+           echo "$BASE/clans/$CHAOS/players" >> $URL
+           echo $URL
       - name: Getting stuff
         run: |-
           echo $URL
