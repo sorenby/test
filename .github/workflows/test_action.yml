@@ -22,11 +22,7 @@ jobs:
     needs: build_cmd
     runs-on: ubuntu-latest
       strategy:
-        matrix:
-          clan_cmd: ${{fromJson(needs.build_cmd.outputs.matrix.clan_cmd)}}
-          player_cmd: ${{fromJson(needs.build_cmd.outputs.matrix.player_cmd)}}
-          clans: ${{fromJson(needs.build_cmd.outputs.matrix.clans)}}
-          players: ${{fromJson(needs.build_cmd.outputs.matrix.players)}}
+        matrix: ${{fromJson(needs.build_cmd.outputs.matrix)}}
       steps:
         - name: Get it done
           run: |
