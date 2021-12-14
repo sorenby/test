@@ -43,7 +43,7 @@ jobs:
           URL: "${{ secrets.ts_base }}/clans/${{ secrets.chaos }}/Players"
         run: |-
           echo $URL
-          curl $URL | jq . > clans.json
+          curl "{ $URL }"| jq . > clans.json
           tail clans.json
       - uses: actions/upload-artifact@v2
         with:
