@@ -15,9 +15,13 @@ jobs:
           CHAOS: ${{ secrets.CHAOS }}
           SUTEKH: ${{ secrets.SUTEKH }}
         run: |
-          curl "$GET_CMD"| jq . > ${{ toJson(cmd) }}"
-          echo "::set-output name=matrix::${{ fromJson(cmd) }}"
-          echo "${{ fromJson(cmd.json) }}"
+          test=$( curl "$GET_CMD" | jk .)
+          echo "Out: $test"
+
+        # SERVICES='${{ toJSON(github.event.client_payload.services) }}'
+        #  curl "$GET_CMD"| jq . > ${{ toJson(cmd) }}"
+        #  echo "::set-output name=matrix::${{ fromJson(cmd) }}"
+        #  echo "${{ fromJson(cmd.json) }}"
 
 #  core:
 #    needs: build_cmd
