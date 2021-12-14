@@ -37,10 +37,10 @@ jobs:
       # Test curl
       - name: Getting stuff
         env:
-          BASE: ${{ secrets.ts_base }}
-          CHAOS: ${{ secrets.chaos }}
+          BASE: https://api.tactistats.com/api/
+          CHAOS: 8504f00eb77009be553c873604dc153c
           SUTEKH: ${{ secrets.sutekh }}
-          URL: "${{ secrets.ts_base }}/clans/${{ secrets.chaos }}/Players"
+          URL: "$BASE/clans/$CHAOS/players"
         run: |-
           echo $URL
           curl "{ $URL }"| jq . > clans.json
