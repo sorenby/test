@@ -41,8 +41,8 @@ jobs:
           CHAOS: 8504f00eb77009be553c873604dc153c
           SUTEKH: ${{ secrets.sutekh }}
         run: |
-           echo "URL=$(echo $BASE | echo clans/ | echo $CHAOS | echo /players)" >> $GITHUB_ENV
-           echo $URL
+           echo "$BASE/clans/$CHAOS/players)" >> $GITHUB_ENV
+           echo $env.URL
       - name: Getting stuff
         run: |-
           echo $URL
