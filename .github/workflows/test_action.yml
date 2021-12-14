@@ -40,7 +40,7 @@ jobs:
           BASE: ${{ secrets.ts_base }}
           CHAOS: ${{ secrets.chaos }}
           SUTEKH: ${{ secrets.sutekh }}
-          URL: $BASE+'/clans/'+$CHAOS+'/Players'/
+          URL: "${{ secrets.ts_base }}/clans/${{ secrets.chaos }}/Players"
         run: |-
           echo $URL
           curl "https://abaddon.se/player.json" | jq . > clans.json
