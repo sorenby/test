@@ -41,12 +41,10 @@ jobs:
           CHAOS: 8504f00eb77009be553c873604dc153c
           SUTEKH: ${{ secrets.sutekh }}
         run: |
-           echo "$BASE/clans/$CHAOS/players" >> $URL
-           echo $URL
-      - name: Getting stuff
-        run: |-
-          echo $URL
-          curl "{ $env.URL }"| jq . > clans.json
+          echo "$BASE/clans/$CHAOS/players" >> $env.URL
+          # echo $URL
+          # echo $URL
+          curl "$BASE/clans/$CHAOS/players"| jq . > clans.json
           tail clans.json
       - uses: actions/upload-artifact@v2
         with:
