@@ -18,4 +18,4 @@ jobs:
       - name: Get command
         id: get_cmd
         run: |
-          echo "${{ steps.get_json.outputs.json_var }}"
+          echo "${{ steps.get_json.outputs.json_var["clan_url"] }}"
