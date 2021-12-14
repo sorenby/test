@@ -43,10 +43,10 @@ jobs:
         run: |
       - name: Getting stuff
         env:
-          URL: ${ BASE }clans/${ CHAOS }/players
+          URL: ${{ BASE }}clans/${{ CHAOS }}/players
         run: |-
           echo $URL
-          curl "{ $env.URL }"| jq . > clans.json
+          curl "{{ $URL }}"| jq . > clans.json
           tail clans.json
       - uses: actions/upload-artifact@v2
         with:
