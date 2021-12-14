@@ -19,7 +19,14 @@ jobs:
         id: get_cmd
         run: |
           echo $json_var
-          echo ${{ steps.get_json.outputs.json_var[0] }}
+          echo ::set-output name=json_var::fromJson($json_var)
           echo ${{ steps.get_json.outputs.json_var[0].clan_url }}
         env:
           json_var: ${{ steps.get_json.outputs.json_var}}
+      - name: Check command
+        id: check_cmd
+        run: |
+          echo $cmd_var
+        env:
+          cmd_var: ${{ steps.get_cmd.outputs.json_var}}
+        
