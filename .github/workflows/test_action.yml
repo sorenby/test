@@ -14,7 +14,7 @@ jobs:
           GET_CMD: ${{ secrets.BASE_CMD }}
         id: get_json
         run: |
-          echo ::set-output name=json_var::$(curl "$GET_CMD" | jq '.[].clan_url')
+          echo ::set-output name=json_var::$(curl "$GET_CMD" | jq '.')
       - name: Get command
         id: get_cmd
         run: |
