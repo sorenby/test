@@ -41,6 +41,8 @@ jobs:
           CHAOS: 8504f00eb77009be553c873604dc153c
           SUTEKH: ${{ secrets.sutekh }}
         run: |
+          echo "::set-env name=$BASE::$BASE"
+          echo "::set-env name=$CHAOS::$CHAOS"
       - name: Getting stuff
         env:
           URL: '${{ env.BASE }}clans/${{ env.CHAOS }}/players'
