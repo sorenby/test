@@ -1,59 +1,21 @@
-name: GetChaos
+name: GetStats
 on:
   push:
   workflow_dispatch:
 
 jobs:
   build_cmd:
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Getting stuff
+      - name: Get JSON
         env:
           GET_CMD: ${{ secrets.BASE_CMD }}
-          BASE: ${{ secrets.TS_BASE }}
-          GET_CLAN: ${{ secrets.GET_CLAN }}
-          CHAOS: ${{ secrets.CHAOS }}
-          SUTEKH: ${{ secrets.SUTEKH }}
-          TEST: ${{ (curl '$GET_CMD') }}
+        id: get_json
+        run: | 
+          echo ::set-output name=json_var::$(curl "$GET_CMD")
+      - name: Get command
+        id: get_cmd
         run: |
-          # cmd=$test[0]
-          echo 'Out: ${{ env.test[0].clan_cmd }}'
-        # echo "cmd: $cmd"
-        # SERVICES='${{ toJSON(github.event.client_payload.services) }}'
-        #  curl "$GET_CMD"| jq . > ${{ toJson(cmd) }}"
-        #  echo "::set-output name=matrix::${{ fromJson(cmd) }}"
-        #  echo "${{ fromJson(cmd.json) }}"
-
-#  core:
-#    needs: build_cmd
-#    runs-on: ubuntu-latest
-#      strategy:
-#        matrix: ${{ fromJson(needs.build_cmd.outputs.matrix) }}
-#      steps:
-#        - name: Get it done
-#          run: |
-#            echo "players: ${{ matrix.players }}"
-      #- name: Get it done
-      #  run: |
-      #    echo "The string is: ${{ steps.get_current.outputs.content }}"
-        # env:
-          # GET_CURRENT: ${{ format({{ $FETCH }}, {{ $GET_CLAN }}, {{ $CHAOS }}) }}
-        # run: |
-         # echo $GET_CURRENT
-          # echo GET_CURRENT format($FETCH,$GET_CLAN,$CHAOS)
-          # echo $GET_CURRENT
-      #- name: test
-      #  uses: frabert/replace-string-action@v2.0
-      #  with:
-      #    pattern: 'Hello, (\w+)!'
-      #    string: 'Hello, world!'
-      #    replace-with: 'I greet you, $1!'
-      #- name: test showoff
-      #  run: |
-      #    echo $replaced
-
-# - uses: actions/upload-artifact@v2
-      #  with:
-       #   name: chaos
-        #  path: chaos.json
+          echo "${{ steps.get_json.outputs.json_var }}
