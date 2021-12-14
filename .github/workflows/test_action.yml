@@ -23,7 +23,17 @@ jobs:
           echo $GET_CURRENT
           echo GET_CURRENT: format($FETCH,$GET_CLAN,$CHAOS))
           echo $GET_CURRENT
-      # - uses: actions/upload-artifact@v2
+      - name: test
+        uses: frabert/replace-string-action@v2.0
+        with:
+          pattern: 'Hello, (\w+)!'
+          string: 'Hello, world!'
+          replace-with: 'I greet you, $1!'
+      - name: test
+        run: |
+          echo $replaced
+          
+# - uses: actions/upload-artifact@v2
       #  with:
        #   name: chaos
         #  path: chaos.json
