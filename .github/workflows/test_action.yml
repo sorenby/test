@@ -19,7 +19,7 @@ jobs:
         id: get_cmd
         run: |
           echo $json_var
-          echo ${{ json_var[0] }}
-          echo $json_var[0]['clan_url']
+          echo ${{ steps.get_json.outputs.json_var[0] }}
+          echo ${{ steps.get_json.outputs.json_var[0].clan_url }}
         env:
           json_var: ${{ steps.get_json.outputs.json_var}}
