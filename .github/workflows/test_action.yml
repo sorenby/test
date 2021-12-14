@@ -36,10 +36,17 @@ jobs:
           echo test, and deploy your project.
       # Test curl
       - name: Getting stuff
+        env:
+          BASE: ${{ secrets.ts_base }}
+          CHAOS: ${{ secrets.chaos }}
+          SUTEKH: ${{ secrets.sutekh }}
         run: |-
-          curl "https://abaddon.se/player.json" | jq . > output_file.json
-          tail output_file.json
+          with:
+            URL: $BASE+'/clans/'+$CHAOS+'/Players'/
+            echo $URL
+          curl "https://abaddon.se/player.json" | jq . > clans.json
+          tail clans.json
       - uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
-          path: output_file.json
+          name: clans
+          path: clans.json
