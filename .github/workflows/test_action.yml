@@ -29,7 +29,7 @@ jobs:
           echo ${{ steps.get_cmd.outputs.clan_cmd }}
           echo ${{ steps.get_cmd.outputs.clan_url }}
           echo ${{ steps.get_cmd.outputs.clan_list }}
-          echo format('{{ steps.get_cmd.outputs.clan_url }} ', 'Mona')
+          echo "${{format(steps.get_cmd.outputs.clan_url, steps.get_cmd.outputs.clan_list)}}"
         env:
           cl_cmd: ${{ steps.get_cmd.outputs.clan_cmd }}
           cl_url: ${{ steps.get_cmd.outputs.clan_url }}
