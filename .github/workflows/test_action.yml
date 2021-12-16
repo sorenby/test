@@ -40,8 +40,8 @@ jobs:
         run: |
           echo ::set-output name=clan_url::${{format(env.clan_url, env.clan_list)}}
           echo ::set-output name=clan_cmd::${{env.clan_cmd}}
-          echo ${{ env.clan_matrix }}
-          echo ${{ toJSON(env.clan_matrix) }}
+          echo ${{ env.clan_matrix.players }}
+          echo ${{ toJSON(env.clan_matrix.players) }}
     
       - name: Create command
         id: create_cmd
