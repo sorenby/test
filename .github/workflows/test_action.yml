@@ -51,7 +51,7 @@ jobs:
         run: |
           echo ${{ env.cmd_to_run }}
           echo ${{ steps.create_cmd.outputs.cmd_to_run }}
-          echo $(env.cmd_to_run > clan.json)
+          echo $(${{env.cmd_to_run}} > clan.json)
           echo $(tail clan.json)
         
         
