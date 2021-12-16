@@ -44,7 +44,7 @@ jobs:
       - name: Get list for matrix
         id: get_list
         env:
-          clan_matrix: ${{ steps.check_cmd.outputs.clan_matrix }}
+          clan_matrix: ${{ steps.get_cmd.outputs.clan_matrix }}
         uses: lucaspinheirogit/list-from-string-array-action@v1.4.3
         with:
           stringArray: ${{ env.clan_matrix }}
