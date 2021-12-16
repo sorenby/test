@@ -40,7 +40,7 @@ jobs:
         run: |
           echo ::set-output name=clan_url::${{format(env.clan_url, env.clan_list)}}
           echo ::set-output name=clan_cmd::${{env.clan_cmd}}
-          PLAYS=[${{toJSON(env.clan_matrix)}}]
+          PLAYS=[toJSON(env.clan_matrix)]
           echo "$PLAYS"
           # echo $(fromJSON(${{env.PLAYS}}))
           # echo toJSON(env.clan_matrix.players)
