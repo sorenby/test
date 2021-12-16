@@ -27,7 +27,7 @@ jobs:
           echo ::set-output name=clan_cmd::${{fromJSON(env.json_var).clan_cmd}}
           echo ::set-output name=clan_url::${{fromJSON(env.json_var).clan_url}}
           echo ::set-output name=clan_list::${{fromJSON(env.json_var).clans[0]}}
-          echo ::set-output name=clan_matrix::${{fromJSON(toJSON(fromJSON(env.json_var).players))}}
+          echo ::set-output name=clan_matrix::${{toJSON(fromJSON(env.json_var).players)}}
           
 
       - name: Check command
@@ -38,6 +38,7 @@ jobs:
           clan_list: ${{ steps.get_cmd.outputs.clan_list }}
           clan_matrix: ${{ steps.get_cmd.outputs.clan_matrix }}
         run: |
+          echo ${{ env.clan_matrix }}
           echo ::set-output name=clan_url::${{format(env.clan_url, env.clan_list)}}
           echo ::set-output name=clan_cmd::${{env.clan_cmd}}
  
