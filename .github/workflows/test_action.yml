@@ -36,7 +36,7 @@ jobs:
           clan_cmd: ${{ steps.get_cmd.outputs.clan_cmd }}
           clan_url: ${{ steps.get_cmd.outputs.clan_url }}
           clan_list: ${{ steps.get_cmd.outputs.clan_list }}
-          clan_matrix: ${{ steps.get_cmd.outputs.clan_list }}
+          clan_matrix: ${{ steps.get_cmd.outputs.clan_matrix }}
         run: |
           echo ::set-output name=clan_url::${{format(env.clan_url, env.clan_list)}}
           echo ::set-output name=clan_cmd::${{env.clan_cmd}}
