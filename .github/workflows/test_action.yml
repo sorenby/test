@@ -22,22 +22,19 @@ jobs:
         env:
           json_var: ${{ steps.get_json.outputs.json_var }}
         run: |
-          echo ::set-output name=clan_cmd::${{fromJson(steps.get_json.outputs.json_var).clan_cmd}}
-          echo ::set-output name=clan_url::${{fromJson(steps.get_json.outputs.json_var).clan_url}}
-          echo ::set-output name=clan_list::${{fromJson(steps.get_json.outputs.json_var).clans[0]}}
+          echo ::set-output name=clan_cmd::${{fromJson(env.json_var).clan_cmd}}
+          echo ::set-output name=clan_url::${{fromJson(env.json_var).clan_url}}
+          echo ::set-output name=clan_list::${{fromJson(env.json_var).clans[0]}}
 
       - name: Check command
         id: check_cmd
         env:
-          cl_cmd: ${{ steps.get_cmd.outputs.clan_cmd }}
-          cl_url: ${{ steps.get_cmd.outputs.clan_url }}
-          cl_clan_list: ${{ steps.get_cmd.outputs.clan_list }}
+          clan_cmd: ${{ steps.get_cmd.outputs.clan_cmd }}
+          clan_url: ${{ steps.get_cmd.outputs.clan_url }}
+          clan_list: ${{ steps.get_cmd.outputs.clan_list }}
         run: |
-          echo ${{ steps.get_cmd.outputs.clan_cmd }}
-          echo ${{ steps.get_cmd.outputs.clan_url }}
-          echo ${{ steps.get_cmd.outputs.clan_list }}
-          echo ::set-output name=clan_url::${{format(steps.get_cmd.outputs.clan_url, steps.get_cmd.outputs.clan_list)}}
-          echo ::set-output name=clan_cmd::${{steps.get_cmd.outputs.clan_cmd}}
+          echo ::set-output name=clan_url::${{format(env.clan_url, env.clan_list)}}
+          echo ::set-output name=clan_cmd::${{env.clan_cmd}}
     
       - name: Create command
         id: create_cmd
@@ -45,8 +42,6 @@ jobs:
           clan_url: ${{ steps.check_cmd.outputs.clan_url }}
           clan_cmd: ${{ steps.check_cmd.outputs.clan_cmd }}
         run: |
-          echo ${{ env.clan_url }}
-          echo ${{ env.clan_cmd }}
           echo ::set-output name=cmd_to_run::${{format(env.clan_cmd, env.clan_url)}}
           
       - name: Run command
@@ -56,5 +51,7 @@ jobs:
         run: |
           echo ${{ env.cmd_to_run }}
           echo ${{ steps.create_cmd.outputs.cmd_to_run }}
+          echo $(env.cmd_to_run > clan.json)
+          echo $(tail clan.json)
         
         
