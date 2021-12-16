@@ -4,9 +4,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_cmd:
-    name: Test
+  build_matrix:
+    name: Build clan matrix
     runs-on: ubuntu-latest
+    outputs:
+      clan_matrix: ${{ steps.get_cmd.outputs.clan_matrix }}
     steps:
       - uses: actions/checkout@v2
 
@@ -25,6 +27,7 @@ jobs:
           echo ::set-output name=clan_cmd::${{fromJson(env.json_var).clan_cmd}}
           echo ::set-output name=clan_url::${{fromJson(env.json_var).clan_url}}
           echo ::set-output name=clan_list::${{fromJson(env.json_var).clans[0]}}
+          echo ::set-output name=clan_matrix::${{fromJson(env.json_var).clans}}
 
       - name: Check command
         id: check_cmd
@@ -49,8 +52,6 @@ jobs:
         env:
           cmd_to_run: ${{ steps.create_cmd.outputs.cmd_to_run }}
         run: |
-          echo ${{ env.cmd_to_run }}
-          echo ${{ steps.create_cmd.outputs.cmd_to_run }}
           echo $(${{env.cmd_to_run}} >> clan.json)
 
       - name: Display file
@@ -58,3 +59,17 @@ jobs:
         run: |
           echo $(tail -10 clan.json)
         
+  run_matrix:
+    runs-on: ubuntu-latest
+    needs:
+      - build_matrix
+    strategy:
+      matrix:
+        clans: ${{ needs.build_matrix.outputs.clan_matrix }}
+        
+    steps:
+      - name: Matrix => (${{ matrix.clans }}
+        run: |
+          echo ${{ matrix.clans }}
+
+    
