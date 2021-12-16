@@ -45,16 +45,16 @@ jobs:
           clan_url: ${{ steps.check_cmd.outputs.clan_url }}
           clan_cmd: ${{ steps.check_cmd.outputs.clan_cmd }}
         run: |
-          echo ${{ clan_url }}
-          echo ${{ clan_cmd }}
-          echo ::set-output name=cmd_to_run::${{format(clan_cmd, clan_url)}}
+          echo ${{ env.clan_url }}
+          echo ${{ env.clan_cmd }}
+          echo ::set-output name=cmd_to_run::${{format(env.clan_cmd, env.clan_url)}}
           
       - name: Run command
         id: run_cmd
         env:
           cmd_to_run: ${{ steps.create_cmd.outputs.cmd_to_run }}
         run: |
-          echo ${{ cmd_to_run }}
+          echo ${{ env.cmd_to_run }}
           echo ${{ steps.create_cmd.outputs.cmd_to_run }}
         
         
