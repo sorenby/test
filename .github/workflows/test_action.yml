@@ -46,10 +46,10 @@ jobs:
       - name: Get list for matrix
         id: get_list
         env:
-          clan_matrix: ${{ steps.get_cmd.outputs.clan_matrix }}
+          json_var: ${{ steps.get_json.outputs.json_var }}
         uses: lucaspinheirogit/list-from-string-array-action@v1.4.3
         with:
-          stringArray: ${{ env.clan_matrix }}
+          stringArray: ${{fromJSON(env.json_var).players}}
 
       - name: Create command
         id: create_cmd
