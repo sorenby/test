@@ -28,7 +28,7 @@ jobs:
           echo ::set-output name=clan_url::${{fromJSON(env.json_var).clan_url}}
           echo ::set-output name=clan_list::${{fromJSON(env.json_var).clans[0]}}
           players="${{toJSON(fromJSON(env.json_var).players)}}"
-          echo ::set-output name=clan_matrix::${{$(fromJSON(env.json_var).players)}}
+          echo ::set-output name=clan_matrix::${{(fromJSON(env.json_var).players)}}
           
 
       - name: Check command
